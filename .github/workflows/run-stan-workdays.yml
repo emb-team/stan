@@ -31,14 +31,11 @@ jobs:
       # Step 4: Run the stan.py script and save output to a file
       - name: Run stan.py
         run: |
-          # Get the current date and time in YYYY-MM-DD-HH-MM format
-          CURRENT_DATETIME=$(date +%Y-%m-%d-%H-%M)
           # Run the script and save output to a file
-          python stan.py > result-$CURRENT_DATETIME.txt
+          python stan.py > result.txt
 
       # Step 5: Upload the result file as an artifact
-      - name: Upload result file
-        uses: actions/upload-artifact@v4
-        with:
-          name: result-${{ steps.get-date.outputs.date }}
-          path: result-*.txt
+      - name: Print result file
+        run: |
+          cat result. txt
+        
