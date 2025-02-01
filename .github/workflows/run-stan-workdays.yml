@@ -1,0 +1,44 @@
+name: Run Stan Script on Workdays
+
+on:
+  schedule:
+    # Runs at 6 PM CET (17:00 UTC in winter, 18:00 UTC in summer) on workdays (Mon-Fri)
+    - cron: '0 17 * * 1-5'
+    # Runs at 9 PM CET (20:00 UTC in winter, 21:00 UTC in summer) on workdays (Mon-Fri)
+    - cron: '0 20 * * 1-5'
+  workflow_dispatch:  # Allows manual triggering
+
+jobs:
+  run-stan:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Python
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pandas numpy requests yfinance logging
+
+      # Step 4: Run the stan.py script and save output to a file
+      - name: Run stan.py
+        run: |
+          # Get the current date and time in YYYY-MM-DD-HH-MM format
+          CURRENT_DATETIME=$(date +%Y-%m-%d-%H-%M)
+          # Run the script and save output to a file
+          python stan.py > result-$CURRENT_DATETIME.txt
+
+      # Step 5: Upload the result file as an artifact
+      - name: Upload result file
+        uses: actions/upload-artifact@v4
+        with:
+          name: result-${{ steps.get-date.outputs.date }}
+          path: result-*.txt
