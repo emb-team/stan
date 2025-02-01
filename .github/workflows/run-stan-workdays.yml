@@ -34,8 +34,8 @@ jobs:
           # Run the script and save output to a file
           python stan.py > result.txt
 
-      # Step 5: Upload the result file as an artifact
+      # Step 5: Print the result file as an artifact
       - name: Print result file
         run: |
-          cat result. txt
+          cat result.txt
         
