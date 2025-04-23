@@ -28,14 +28,14 @@ _SECTORS_LIST = set(['Consumer Non-Durables', 'Capital Goods', 'Health Care',
 
 headers = {
     'authority': 'api.nasdaq.com',
-    'accept': 'application/json, text/plain, */*',
-    'user-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:135.0) Gecko/20100101 Firefox/135.0',
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+    'user-agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:137.0) Gecko/20100101 Firefox/137.0',
     'origin': 'https://www.nasdaq.com',
     'sec-fetch-site': 'same-site',
     'sec-fetch-mode': 'cors',
     'sec-fetch-dest': 'empty',
     'referer': 'https://www.nasdaq.com/',
-    'accept-language': 'en-US,en;q=0.9',
+    'accept-language': 'en-US,en;q=0.5',
 }
 
 def params(exchange):
