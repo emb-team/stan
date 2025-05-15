@@ -45,5 +45,6 @@ gt._EXCHANGE_LIST = ['nasdaq']
 
 filtered_by_sector = gt.get_tickers_filtered(mktcap_min=2000)
 #, sectors=[gt.SectorConstants.TECH, gt.SectorConstants.FINANCE])
+yf.download(filtered_by_sector,period="5d")
 for ticker in filtered_by_sector:
     get_hist_and_anal(ticker)
